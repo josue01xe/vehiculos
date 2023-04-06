@@ -20,6 +20,6 @@ class Vehiculo extends Conexion {
         } 
         catch(Exception $e){
             die($e->getMessage());
-    }  ¨
+    }  
  }
 }

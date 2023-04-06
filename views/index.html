@@ -44,14 +44,16 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>idreparacion</th>
-                            <th>idmulta</th>
-                            <th>idseguro</th>
-                            <th>numeroplaca</th>
                             <th>marca</th>
                             <th>modelo</th>
                             <th>año</th>
                             <th>tipocombustible</th>
+                            <th>color</th>
+                            <th>numeroplaca</th>
+                            <th>transmision</th>
+                            <th>kilometraje</th>
+                            <th>tipovehiculo</th>
+                            <th>fechacompra</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,25 +74,61 @@
                                     <div class="modal-body">
                                         <form id="formulario-vehiculos">
                                             
+                                            
                                             <div class="mb-3">
-                                                <label for="fechainicio" class="form-label">numeroplaca</label>
-                                                <input type="text" class="form-control form-control-sm" id="nombrecurso">
+                                                <label for="marca" class="form-label">marca</label>
+                                                <select id="marca" class="form-select form-select-sm">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="toyota">Toyota</option>
+                                                    <option value="ford">Ford</option>
+                                                    
+                                                </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="precio" class="form-label">marca</label>
-                                                
+                                                <label for="modelo" class="form-label">modelo</label>
+                                                <select id="modelo" class="form-select form-select-sm">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="corolla">Corolla</option>
+                                                    <option value="focus">Focus</option>
+                                                    
+                                                </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="precio" class="form-label">modelo</label>
-                                                
+                                                <label for="fecha" class="form-label">año</label>
+                                                <input type="date" class="form-control form-control-sm" id="fecha">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="precio" class="form-label">año</label>
-                                                
+                                                <label for="tipocombustible" class="form-label">tipocombustible</label>
+                                                <input type="text" class="form-control form-control-sm" id="tipocombustible">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="precio" class="form-label">tipocombustible</label>
-                                                
+                                                <label for="color" class="form-label">color</label>
+                                                <input type="text" class="form-control form-control-sm" id="color">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="numeroplaca" class="form-label">numeroplaca</label>
+                                                <input type="text" name ="placa" maxlength="6" class="form-control form-control-sm" id="nombrevehiculo">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="transmision" class="form-label">transmision</label>
+                                                <input type="text" name ="placa" maxlength="6" class="form-control form-control-sm" id="nombrevehiculo">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="numeroplaca" class="form-label">kilometraje</label>
+                                                <input type="text" class="form-control form-control-sm" id="kilometraje">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="tipovehiculo" class="form-label">tipovehiculo</label>
+                                        <select id="tipovehiculo" class="form-select form-select-sm">
+                                          <option value="">Seleccione</option>
+                                          <option value="A">Automatico</option>
+                                          <option value="M">Manual</option>
+                                         
+                                        </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="fechacompra" class="form-label">fechacompra</label>
+                                                <input type="text" class="form-control form-control-sm" id="fechacompra">
                                             </div>
                                         </form>
                                     </div>
@@ -115,7 +153,27 @@
                         <!-- jQuery -->
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-    
+                        <script>
+                            $(document).ready(function() {
+
+function mostrarVehiculos() {
+    $.ajax({
+        url: '../controllers/vehiculo.controller.php',
+        type: 'POST',
+        data: {
+            operacion: 'listar'
+        },
+        dataType: 'text',
+        success: function(result) {
+            $("#tabla-vehiculos tbody").html(result);
+        }
+    });
+}
+
+mostrarVehiculos();
+
+});
+                        </script>
 </body>
 
 </html>

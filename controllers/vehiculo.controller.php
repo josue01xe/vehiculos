@@ -41,5 +41,28 @@ if($_POST['operacion']== 'listar'){
 
 
 }
+if($_POST['operacion']== 'registrar'){
+
+    //Paso 1: recoger los datos que nos envia la vista (FORM, utilizando AJAX)
+    //$_POST : esto es lo que nos envia desde FORM
+    $datosForm = [
+      "marca"        => $_POST['marca'],
+      "modelo"       => $_POST['modelo'],
+      "año        "  => $_POST['año'],
+      "tipocombustible"  => $_POST['tipocombustible'],
+      "color"       => $_POST['color'],
+      "numeroplaca"  => $_POST['numeroplaca'],
+      "transmision"  => $_POST['transmision'],
+      "kilometraje"  => $_POST['kilometraje'],
+      "tipovehiculo"  => $_POST['tipovehiculo'],
+      "fechacompra"  => $_POST['fechacompra']
+    ];
+  
+    //paso 2: enviar el arreglo como parametro del metodo registrar
+    $vehiculo->registrarVehiculo($datosForm);
+  
+   
+  
+  }
 }
 

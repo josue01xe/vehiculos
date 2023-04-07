@@ -93,8 +93,8 @@
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="fecha" class="form-label">año</label>
-                                                <select id="fecha" class="form-select form-select-sm">
+                                                <label for="año" class="form-label">año</label>
+                                                <select id="año" class="form-select form-select-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="">2017</option>
                                                     <option value="">2018</option>
@@ -174,14 +174,56 @@ function mostrarVehiculos() {
         dataType: 'text',
         success: function(result) {
             $("#tabla-vehiculos tbody").html(result);
-            console.log(result);
+            
         }
     });
 }
 
-mostrarVehiculos();
+function registrarVehiculo() {
+                //Pendiente de validar...
+                if (confirm("¿Está seguro de registrar este nuevo vehiculo?")) {
+             $.ajax({
+                     url: '../controllers/vehiculo.controller.php',
+                     type: 'POST',
+                             data: {
+                         operacion: 'registrar',
+                                 marca: $("#marca").val(),
+                                 modelo: $("#modelo").val(),
+                                 año: $("#año").val(),
+                                 tipocombustible: $("#tipocombustible").val(),
+                             color: $("#color").val(),
+                             numeroplaca: $("#numeroplaca").val(),
+                             transmision: $("#transmision").val(),
+                             kilometraje: $("#kilometraje").val(),
+                             tipovehiculo: $("#tipovehiculo").val(),
+                             fechacompra: $("#fechacompra").val()
+                                 },
+                         success: function(result) {
+                     if (result == "") {
+                         //Reiniciar el formulario
+                             $("#formulario-vehiculos")[0].reset();
 
-});
+                             //Actualizar la tabla
+                         mostrarVehiculos();
+                                                    //Cerrar el modal
+                         $("modal-registro-vehiculos").modal('hide');
+                                    }
+                                  }
+                              });
+                              
+                        }
+                  }
+                
+
+                                            
+
+
+                                //Ejecución automática
+                                mostrarVehiculos();
+
+
+                            });
+
      </script>
 </body>
 

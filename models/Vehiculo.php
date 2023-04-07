@@ -21,4 +21,30 @@ class Vehiculo extends Conexion {
             die($e->getMessage());
         }
     }
+
+    public function registrarVehiculo($datos = []){
+        try{
+         //1.Preparamos la consulta
+         $consulta = $this->accesoBD->prepare("CALL spu_vehiculos_registrar(?,?,?,?,?,?,?,?,?,?)");
+         //2.Ejecutamos la consulta
+         $consulta->execute(
+           array(
+             $datos["marca"],
+             $datos["modelo"],
+             $datos["año"],
+             $datos["tipocombustible"],
+             $datos["color"],
+             $datos["numeroplaca"],
+             $datos["transmision"],
+             $datos["kilometraje"],
+             $datos["tipovehiculo"],
+             $datos["fechacompra"]
+           )
+         );
+        }  
+        catch(Exception $e){
+         die($e->getMessage());
+       }
+   
+     }
 }

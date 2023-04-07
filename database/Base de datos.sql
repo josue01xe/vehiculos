@@ -3,7 +3,7 @@ USE vehiculos;
 
 CREATE TABLE vehiculos
 (
-idvehiculos INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+idvehiculo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 marca          VARCHAR(80)     NOT NULL,
 modelo         VARCHAR(80)     NOT NULL,
 año            DATE            NOT NULL,
@@ -22,3 +22,24 @@ INSERT INTO vehiculos(marca, modelo, año, tipocombustible, color, numeroplaca, 
 ('ford', 'focus', '2018-04-10', 'diesel', 'negro', 'AEF777', 'M', 100.000, 'automovil', '2023-01-10');
 
 SELECT * FROM vehiculos;
+
+DELIMITER $$
+CREATE PROCEDURE spu_vehiculos_listar()
+BEGIN
+ SELECT idvehiculo,
+        marca,
+        modelo,
+        año,
+        tipocombustible,
+        color,
+        numeroplaca,
+        transmision,
+        kilometraje,
+        tipovehiculo,
+        fechacompra
+ FROM vehiculos
+ ORDER BY idvehiculo DESC;
+END $$
+
+ CALL spu_vehiculos_listar();
+       

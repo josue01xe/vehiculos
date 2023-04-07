@@ -30,7 +30,7 @@ if($_POST['operacion']== 'listar'){
            <td>{$vehiculo['fechacompra']}</td>
            <td>
 
-           <a href='#' data-idvehiculo='{$vehiculo['idvehiculo']}' class='btn btn-danger btn-sm eliminar'><i class='bi bi-trash-fill'></i></a>
+           <a href='#' data-idvehiculo='{$vehiculo['idvehiculo']}' class='btn btn-danger btn-sm eliminar' id='eliminar-vehiculo'><i class='bi bi-trash-fill'></i></a>
            <a href='#' data-idvehiculo='{$vehiculo['idvehiculo']}' class='btn btn-info btn-sm editar'><i class='bi bi-pencil'></i></a>
            </td>
            </tr>
@@ -61,8 +61,15 @@ if($_POST['operacion']== 'registrar'){
     //paso 2: enviar el arreglo como parametro del metodo registrar
     $vehiculo->registrarVehiculo($datosForm);
   
-   
-  
   }
+
+  if($_POST['operacion'] == 'eliminar'){
+    $idvehiculo = $_POST['idvehiculo'];
+    $resultado = $vehiculo->eliminarVehiculo($idvehiculo);
+    if($resultado){
+        echo "";
+    }
 }
+
+  }
 

@@ -47,4 +47,16 @@ class Vehiculo extends Conexion {
        }
    
      }
-}
+
+     public function eliminarVehiculo($idvehiculo){
+        $sql = "DELETE FROM vehiculos WHERE idvehiculo = ?";
+        $stmt = $this->accesoBD->prepare($sql);
+        $stmt->bindParam(1, $idvehiculo, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();
+        return true;
+    }
+    
+      }
+
+    

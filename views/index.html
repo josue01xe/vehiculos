@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-6 text-end">
                         <button class="btn btn-secondary btn-sm" onclick="" data-bs-toggle="modal" data-bs-target="#modal-registro-vehiculos">
-                            <i class="bi bi-plus-circle-fill"></i> 
+                            <i class="bi bi-plus-circle-fill"></i>  Agregar
                           </button>
                     </div>
                 </div>
@@ -242,7 +242,10 @@ function registrarVehiculo() {
                                       },
                                  success: function(result) {
                                     if (result == "") {
-                                      eliminarVehiculo();
+
+                                        //Reiniciar el formulario
+                             $("#formulario-vehiculos")[0].reset(); 
+                                       listarVehiculos();          
                                              }
 
                                         }
@@ -255,6 +258,8 @@ function registrarVehiculo() {
                                 listarVehiculos();
 
                             });
+
+                            
 
      </script>
 </body>

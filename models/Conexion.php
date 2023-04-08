@@ -18,14 +18,14 @@ class Conexion{
  }
 
 
- //metodo 2: retorna el acceso
+ // retorna el acceso
  public function getConexion(){
     try{
 //pasaremos la conexion al atributo/objeto pdo
 
 $this->pdo = $this->conectarServidor();
 
-//controlar los errores (sera controlado por TRY-CATCH)
+
 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //retornamos la conexion al modelo que lo necesite
 
